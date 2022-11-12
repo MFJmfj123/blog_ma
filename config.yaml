@@ -17,9 +17,9 @@ outputs:
     - RSS
 menu:
   main:
-    - identifier: projects
-      name: Projects
-      url: http://project.onevcat.com/
+    - identifier: Learning materials
+      name: Learning materials
+      url: /content/newpost/
       weight: 10
     - identifier: Tags
       name: Tags
