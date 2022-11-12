@@ -19,7 +19,7 @@ menu:
   main:
     - identifier: Learning materials
       name: Learning materials
-      url: /materials/
+      url: /
       weight: 10
     - identifier: Tags
       name: Tags
@@ -49,12 +49,12 @@ params:
     ID: your_ga_id
     host: your_host
   social:
-    github: onevcat
-    gplus: '107108267983477358170'
-    linkedin: example
-    mail: onev@onevcat.com
-    twitter: onevcat
-    weibo: onevcat
+    github: 
+    gplus: 
+    linkedin: 
+    mail: 
+    twitter: 
+    weibo: 
   subtitle: A blog-website for ma 
   welcomeMessage: Oh What a World
 permalinks:
