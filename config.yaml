@@ -1,5 +1,5 @@
 title: ma website
-baseURL: https://vno-hugo.netlify.app/
+#baseURL: https://vno-hugo.netlify.app/
 theme: Vno-Hugo
 defaultContentLanguage: zh-cn
 languages:
