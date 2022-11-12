@@ -49,12 +49,12 @@ params:
     ID: your_ga_id
     host: your_host
   social:
-    github: 
-    gplus: 
-    linkedin: 
-    mail: 
-    twitter: 
-    weibo: 
+    github: onevcat
+    gplus: '107108267983477358170'
+    linkedin: example
+    mail: onev@onevcat.com
+    twitter: onevcat
+    weibo: onevcat
   subtitle: A blog-website for ma 
   welcomeMessage: Oh What a World
 permalinks:
