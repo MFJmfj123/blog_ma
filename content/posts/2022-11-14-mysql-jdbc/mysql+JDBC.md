@@ -8,7 +8,7 @@ tags:
   - 大数据
 layout: post
 math: no
-draft: yes
+
 ---
 
 #                      大数据学习之SQL+JDBC总结
