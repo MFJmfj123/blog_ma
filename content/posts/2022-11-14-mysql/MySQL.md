@@ -1,12 +1,12 @@
 ---
-title: Mysql+JDBC
+title: MySQL
 author: 马福俊
 date: '2022-11-14'
-slug: Mysql+JDBC
+slug: MySQL
 categories:
-  - 大数据
+  - R
 tags:
-  - Mysql+JDBC
+  - Say Hi
 layout: post
 math: no
 draft: yes
@@ -32,5 +32,3 @@ draft: yes
    - 逻辑删除就是在设计的表中添加一列（例如：isdelete，设置默认值为0），当你想删除数据将这个字段设置为1，当在进行数据库操作时筛选数据即可。这样数据也不会丢失。
 
 4. 数据库的基本操作（增删改查）
-  -查看数据库
-   
