@@ -1,8 +1,8 @@
 ---
-title: 测试2
+title: mysql
 author: ma
 date: '2022-11-14'
-slug: index.zh-cn
+slug: mysql
 categories:
   - R
 tags:
@@ -12,4 +12,3 @@ math: no
 draft: yes
 ---
 
-4564645
