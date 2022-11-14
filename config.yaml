@@ -19,7 +19,7 @@ menu:
   main:
     - identifier: Learning materials
       name: Learning materials
-      url: /
+      url: 
       weight: 10
     - identifier: Tags
       name: Tags
