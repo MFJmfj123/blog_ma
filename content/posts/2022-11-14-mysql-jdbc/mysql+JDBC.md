@@ -101,6 +101,70 @@ math: no
 
    - 查看创建数据表语句
 
+     SHOW CREATE TABLE TABLE_NAME;
+
+   - 增加数据（列，字段）
+
+     ALTER TABLE TABLE_NAME ADD 字段名 数据类型。
+
+   - 增加多个字段
+
+     ALTER TABLE TABLE_NAME ADD 字段名 数据类型，ADD 字段名 数据类型 约束等；
+
+   - 修改列名
+
+     ALTER TABLE TABLE_ANME CHANGE 字段名 新字段名 数据类型；
+
+   - 修改一列类型
+
+     ALTER TABLE TABLE_NAME MODIFY 字段名 新数据类型；
+
+   - 删除一类
+
+     ALTER TABLE TABLE_NAME DROP 字段名；
+
+   - 修改表名
+
+     RENAME TABLE TABLE_NAME TO 新表名；
+
+   - 修改表所用字符集
+
+     ALTER TABLE TABLE_NAME CHARACTER SET 字符集名；
+
+   - 删除表
+
+     DROP TABLE TABLE_NAME;
+
+   - 添加主键（表已经创建完成）
+
+     ALTER TABLE TABLE_NAEM ADD PROMARY KEY(字段名)；
+
+   - 删除主键
+
+     ​	ALTER TABEL TABEL_NAME DROP PRIMARY KEY;
+
+   - 添加唯一索引
+
+     ALTER TABLE TABLE_NAME ADD UNIQUE(字段名)；
+
+   - 添加唯一索引设置索引名
+
+     ALTER TABLE TABLE TABLE_NAME ADD UNIQUE KEY 索引名（字段名）;
+
+   - 添加联合索引
+
+     ALTER TABLE TABLE_NAME ADD UNIQUE INDEX 索引名（字段名1，字段名2）；
+
+   - 删除索引
+
+     ALTER TABLE TABLE_NAME DROP INDEX 索引字段名；
+
+     
+
+     
+
+     
+
 7. 
 
 8. 
