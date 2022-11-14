@@ -5,8 +5,7 @@ date: '2022-11-14'
 slug: mysql+JDBC
 categories: []
 tags:
-  - Say Hi
-  - Vno
+  - 大数据
 layout: post
 math: no
 draft: yes
