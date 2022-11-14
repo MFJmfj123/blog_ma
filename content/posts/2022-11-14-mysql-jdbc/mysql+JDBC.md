@@ -1,8 +1,8 @@
 ---
-title: mysql+jdbc总结
+title: Mysql+JDBC
 author: ma
 date: '2022-11-14'
-slug: index.zh-cn
+slug: mysql+JDBC
 categories: []
 tags:
   - Say Hi
@@ -12,3 +12,6 @@ math: no
 draft: yes
 ---
 
+
+
+41234564
