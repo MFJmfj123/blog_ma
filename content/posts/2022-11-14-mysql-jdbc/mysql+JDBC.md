@@ -294,48 +294,190 @@ math: no
 
 15. ### JDBC
 
-    
+    - JDBC : Java提供的一套用来操作数据库的接口
 
-    
+    - 创建数据库连接对象：
 
+      ```Java
+  /*
+       1.保证数据库可以正常使用（MySQL服务是否开启了）
+   2.保证数据库的账号，密码必须是对的
+       3.确定MySQL版本和驱动包的版本是否匹配
+   4.将驱动包导入到工程中
+      */
+  ```
     
-
+- 数据库连接
     
-
+  ```
+      import java.sql.*;
+  public class JDBC {
+      	public static void main(String[] args) {
+  		String driver="com.mysql.cj.jdbc.Driver";//数据库驱动类所对应的字符串
+      		String URL="jdbc:mysql://localhost:3306/school?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8";
+                  //URL语法格式如下
+      		//jdbc:mysql:是固定的写法，后面跟主机名localhost，3306是默认的MySQL端口号
+  		//serverTimezone=UTC是指定时区时间为世界统一时间
+      		//useUnicode=true是指是否使用Unicode字符集，赋值为true
+  		//characterEncoding=utf-8是指定字符编码格式为UTF8
+      		Connection conn=null;
+  		//Connection接口代表Java程序和数据库的连接对象，只有获得该连接对象后，才能访问数据库，并操作数据表
+      		try {
+  			Class.forName(driver);//加载MySQL数据库驱动
+      		}catch(java.lang.ClassNotFoundException e) {//如果找不到这个类，执行下面的异常处理
+  			System.out.println("驱动程序配置未配置成功!!!");
+      		}
+  		try {
+      			conn=DriverManager.getConnection(URL,"root","123123");//建立和数据库的连接，并返回表示连接的Connection对象
+  			System.out.println("数据库连接成功!!!");
+      		}catch(Exception e) {//未连接成功，执行下面的异常处理
+  			System.out.println("数据库连接失败!!!");
+      		}
+  	}
+      }
+  ```
     
-
+  
     
-
+    - 抽取工具类和加载properties
     
-
+      ```java
+      /*
+      抽取的工具类JDBCUtils
+      /*
+      package com.ma.JDBC;
+      
+      
+      import java.io.FileInputStream;
+      import java.io.FileNotFoundException;
+      import java.io.IOException;
+      import java.sql.Connection;
+      import java.sql.DriverManager;
+      import java.sql.PreparedStatement;
+      import java.sql.SQLException;
+      import java.util.Properties;
+      
+      
+      public class JDBCUtils {
+          public static String ClassName;
+          public static String url;
+          public static String userName;
+          public static String password;
+      
+          static {
+              FileInputStream p = null;
+              try {
+                  Properties properties = new Properties();
+                  p = new FileInputStream("src/jdbc.properties");
+                  properties.load(p);
+                  ClassName = properties.getProperty("ClassName");
+                  url = properties.getProperty("url");
+                  userName = properties.getProperty("userName");
+                  password = properties.getProperty("password");
+              } catch (FileNotFoundException e) {
+                  e.printStackTrace();
+              } catch (IOException e) {
+                  e.printStackTrace();
+              } finally {
+                  try {
+                      p.close();
+                  } catch (IOException e) {
+                      e.printStackTrace();
+                  }
+              }
+      
+          }
+      
+          public static Connection connection() throws ClassNotFoundException, SQLException {
+              Class.forName(ClassName);
+              Connection connection = DriverManager.getConnection(url, userName, password);
+              return connection;
+          }
+      
+          public static void close(Connection connection, PreparedStatement preparedStatement) throws SQLException {
+              connection.close();
+              preparedStatement.close();
+          }
+      }
+      
+      /*
+      JDBC.properties
+      */
+      ClassName = com.mysql.jdbc.Driver
+      url = jdbc:mysql://192.168.37.101:3306/dbJDBC
+      userName = root
+      password = 123456
+          
+      /*
+      数据库连接和进行简单操作
+      */
+      package com.ma.JDBC;
+      
+      import org.junit.Test;
+      
+      import java.sql.Connection;
+      import java.sql.PreparedStatement;
+      import java.sql.SQLException;
+      
+      public class demo1 {
+          @Test
+          public void insert() throws SQLException, ClassNotFoundException {
+              Connection connection = JDBCUtils.connection(); 
+              String sql = "INSERT INTO student(aname,age) value(?,?)";
+              PreparedStatement preparedStatement = connection.prepareStatement(sql);//预编译
+              preparedStatement.setString(1, "zhangsan");
+              preparedStatement.setInt(2, 18);
+              int result = preparedStatement.executeUpdate();
+              System.out.println(result);
+              JDBCUtils.close(connection,preparedStatement);
+      
+          }
+      }
+      
+      ```
     
-
+      
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
