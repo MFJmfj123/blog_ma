@@ -10,7 +10,7 @@ layout: post
 math: no
 ---
 
-#                      大数据学习之SQL+JDBC总结
+#                      **大数据学习之SQL+JDBC总结**
 
 1. ### MySql字段类型
 
@@ -79,7 +79,7 @@ math: no
 
    
 
-6. 数据表的基本操作
+6. ### 数据表的基本操作
 
    - 查看数据库
 
@@ -159,27 +159,142 @@ math: no
 
      ALTER TABLE TABLE_NAME DROP INDEX 索引字段名；
 
-     
+   - 插入一条数据
 
-     
+     INSERT INTO TABLE_NAME(字段名1，字段名2...) VALUES(值一，值二...)；
 
-     
+   - 插入多天数据
 
-7. 
+     INSERT INTO TABLE_NAME(字段名1，字段名2...) VALUES(值一，值二...)，(值一，值二...)...；
 
-8. 
+   - 修改数据
 
-9. 
+     UPDATE TABLE_NAME SET 字段名=值 WHERE 条件；
 
-10. 
+   - 数据表中的数据可知直接运算
 
-11. 
+     UODATE TABLE_NAME SET 数值字段=数值字段+数值；
 
-12. 
+   - 删除数据
 
-13. 
+     DELETE FROM TABLE_NAME WHERE 条件；
 
-14. 
+   - 删除表中的所用数据
+
+     DELETE FROM TABLE_NAME;
+
+   - 清空表中数据
+
+     TRUNCATE TABLE TABLE_NAME;
+
+   - 修改数据表结构
+
+     - alter table  表名：
+
+     - add [column] create_definition [first|after column_name]　//添加新字段
+
+     - add primary key （index_col_name,...）　//添加主码名称
+
+     - alter [column] col_name {set default literal |rop default} //修改字段名称
+
+     - change [column] old_col_name create_definition**　//修改字段名及类型
+
+     - modify [column] create_definition　　//修改字段类型
+
+     - *drop [column] col_name**　　//删除字段
+
+     - drop primary key　//删除主码
+
+     - rename [as] new_tablename　//更改表名
+
+       
+
+7. ### 查询数据
+
+   - SELECT查询
+     - 查询所有数据：SELECT * FROM TABLE_ANEM;'
+     - 查询其中的几个字段：SELECT 字段名1，字段名2  FROM TABLE_NAME;
+     - 过滤表中重复数据：SELECT  DISTINCT 字段名 FROM TABLE_NAME;
+     - 给字段或者表起别名： SELECT NAME AS ANAME 或者 （空格+别名）FROM TABLE_NAME;
+   - WHERE 过滤查询
+     - SELECT 字段名 FROM TABLE_NAME WHRE 过滤条件；
+     - 模糊查询：SELECT 字段名 FROM TABLE_NAME WHRE 过滤条件 LIKE "_%";(下滑线可具体表示第几位，百分号表示通配符)
+     - 区间表示：
+       - 第一种：SELECT 字段名 FROM TABLE_NAME WHRE 字段名>数值 AND 数值<字段名；
+       - 第二种：SELECT 字段名 FROM TABLE_NAME WHRE 字段名 in(数值1,数值2);
+       - SELECT 字段名 FROM TABLE_NAME WHRE 字段名 BETWEEN 数值1 AND 数值2；
+
+8. ### ORDER BY 排序
+
+   - 升序：ASC,降序：DESC；
+   - 语法 SELECT 字段名 FROM TABLE_NAME WHERE 过滤条件 ORDER BY ASC OR DESC;
+
+9. ### GROUP BY 分组查询
+
+   - 通常用法：SELECT 字段名  聚合函数 FROM TABEL_NAME GROUP BY 字段名(为SELECT 后的字段名);
+
+10. ### WHERE 和having 的区别
+
+    首先，明确一点就是能使用where的地方都能使用having；where只能用于分组之前数据的筛选；having只能用于分组之后数据的筛选，而且having中可以使用聚合函数。
+
+11. ### 聚合函数：
+
+    - COUNT（列名）：统计行的个数
+      - 统计学生个数： select count(id) from grade;
+    - SUM（列名）：统计总量
+      - 统计所有js总成绩： select sum(js) as 'js总成绩' from grade;
+    - AVG（列名）：平均数
+      - 统计所有js平均分： select avg(js) as 'js平均分' from grade;
+    - MAX,MIN （最高，最低）
+
+12. ### SQL语句执行顺序
+
+    - from----where----select----group by----having----order by
+
+13. ### limit和正则表达式
+
+    - limit 
+
+      - 查询前三条数据：SELECT * FROM TABLE_NAME LIMIT 3;
+      - 跳过1条，查询3条数据： SELECT  * FROM  grade LIMIT 1,3;
+      - 分页：SELECT * FROM TABLE_NAME LIMIT (第几页-1*页面数据条数) 页面数据条数
+
+    - 正则表达式
+
+      　　　　查询j开头的学生： select * from grade where name regexp '^j';
+
+      　　　　查询名字中m出现2次的学生： select * from grade where name regexp 'm{2}';
+
+14. ### 多表操作
+
+    - 多表连接：将多张表连在一起进行查询。通过两个表共有的列去进行拼接。多表连接，首先要在表之间建立连接。
+      - ​	交叉连接：将一张表的数据与另外一张表中的数据彼此交叉。也就是说把一张表中的每一行逐个与另一张表去进行匹配。没有任何连接条件，所有的记录都会被保留。结果是笛卡尔积，没有实际应用。
+        - 用法：SELECT 字段1，字段2 FROM 表1 JOIN 表2
+      - 内连接：即最常见的等值连接，指连接结果仅包含符合连接条件的行，参与连接的两个表都应该符合连接条件。
+        - 用法：SELECT 字段1，字段2 FROM 表1 JOIN 表2 WHERE 连接（检索条件）
+      - 外连接：在查询时所有的表有主从之分。把作为主表的表的行与从表中的行一一进行匹配，如果匹配成功返回到主表中，如果匹配不成功，则仍然保留主表中的行，相应的从表中的行也被填上null值。驱动表（主表），从表（副表），\
+        - ​	左外连接：LEFT JOIN ON\n把左表作为主表去连接右表
+          - ​	用法：SELECT * FROM 表1 LEFT JOIN 表2 ON条件表达式\n
+        - 右外连接：RIGHT JOIN ON把右表作为主表去连接左边的表
+          - 用法：SELECT * FROM 表1 RIGHT JOIN 表2 ON 条件表达式
+        - 全外连接（经常不用）：即都为主表。左表中未匹配的行仍保留，同时赋给右表NULL值，右表的未匹配的行仍然保留同时赋给左表值NULL
+          - 用法：SELECT * FROM 表1 FULL JOIN 表2 ON 条件表达式
+        - 自连接：就是两个表的两个副本进行连接，为了区别，对表设置别名
+
+    
+
+    - 外键约束：MySQL 外键约束（FOREIGN KEY）用来在两个表的数据之间建立链接，它可以是一列或者多列。一个表可以有一个或多个外键。
+      - 主表（父表）：对于两个具有关联关系的表而言，相关联字段中主键所在的表就是主表。
+      - 从表（子表）：对于两个具有关联关系的表而言，相关联字段中外键所在的表就是从表
+      - 在创建表时设置外键约束：[CONSTRAINT <外键名>] FOREIGN KEY 字段名 [，字段名2，…] REFERENCES <主表名> 主键列1 [，主键列2，…]
+      - 删除外键：ALTER TABLE <表名> DROP FOREIGN KEY <外键约束名>;
+    - 多表查询
+      - 子查询就是将一个查询的结果作为另一个查询的数据来源或判断条件的查询。
+         常见的子查询包括：WHERE子查询，FROM子查询，HAVING子查询，EXISTS子查询，子查询必须使用小括号括起来。
+
+15. ### JDBC
+
+    
 
     
 
