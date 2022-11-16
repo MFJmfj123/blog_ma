@@ -397,7 +397,7 @@ math: no
 
    - 文件属性：
      
-     - ![image-20221115220839247](M:%5CBlog%5Cmywebsite%5Cmywebsite%5Ccontent%5Cposts%5C2022-11-15-liunx%5CLiunx%E5%AD%A6%E4%B9%A0.assets%5Cimage-20221115220839247-1668561556038.png)
+     - ![image-20221115220839247](https://raw.githubusercontent.com/MFJmfj123/My_File/main/imgs/202211160924578.png)
      
      - 0位的表示类型：在Linux中第一个字符代表这个目录，文件或者来链接文件
      
